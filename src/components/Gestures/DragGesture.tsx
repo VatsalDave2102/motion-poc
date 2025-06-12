@@ -30,7 +30,7 @@ const DragGesture: React.FC = () => {
             right: 500,
             bottom: 140,
           }}
-          onDrag={(event, info) => {
+          onDrag={(_event, info) => {
             setDragPosition({ x: info.point.x, y: info.point.y });
           }}
           whileDrag={{
