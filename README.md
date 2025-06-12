@@ -1,54 +1,167 @@
-# React + TypeScript + Vite
+# Motion POC - Animation Library Showcase
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project demonstrates the capabilities and best practices of the Motion animation library for React. It serves as a proof of concept and educational resource for implementing animations in modern web applications.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This POC showcases various animation concepts organized into distinct categories:
 
-## Expanding the ESLint configuration
+### Basic Animations
+- Simple transitions with opacity, scale, and position
+- Continuous looping animations
+- Toggle animations based on state changes
+- Spring-based physics animations
+- Staggered animations across multiple elements
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Variants
+- Named animation states for better organization
+- Staggered children animations using parent-child propagation
+- Interactive toggle menus with height animations
+- Hover and tap interaction variants
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Gestures
+- Hover gesture animations
+- Tap gesture feedback
+- Drag functionality with constraints
+- Pan gesture handling
+- Elastic drag constraints with "rubber-band" effects
+- Combined gesture interactions
+
+### Layout Animations
+- Shared layout animations between different UI states
+- Dynamic list manipulation with smooth transitions
+- Card-to-modal shared element transitions
+- Expandable/collapsible content with height animations
+
+### Scroll Animations
+- Scroll progress indicators
+- Parallax effects
+- Reveal animations triggered by viewport
+- Scale animations on scroll
+- Staggered grid animations on scroll
+- Slide-in effects
+
+## 📋 Prerequisites
+
+- Node.js 18.x or higher
+- npm 9.x or higher
+
+## 🛠️ Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/VatsalDave2102/motion-poc
+cd motion-poc
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+2. Install dependencies:
+```bash
+npm install
 ```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 🔍 Project Structure
+
+```
+src/
+├── components/        # Reusable animation components
+│   ├── BasicAnimations/
+│   ├── Gestures/
+│   ├── Home/
+│   ├── LayoutAnimations/
+│   ├── ScrollAnimations/
+│   └── Variants/
+├── pages/             # Main page components for each category
+├── routes/            # Application routes configuration
+└── App.tsx            # Main application component
+```
+
+## 📚 Key Concepts Demonstrated
+
+### Motion Components
+Convert any HTML or SVG element into an animatable element:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.5 }}
+/>
+```
+
+### Variants
+Define reusable animation states:
+
+```tsx
+const variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 }
+};
+
+<motion.div
+  variants={variants}
+  initial="hidden"
+  animate="visible"
+/>
+```
+
+### Gestures
+Add interactive animations:
+
+```tsx
+<motion.div
+  whileHover={{ scale: 1.1 }}
+  whileTap={{ scale: 0.9 }}
+  drag
+  dragConstraints={{ left: 0, right: 300, top: 0, bottom: 300 }}
+/>
+```
+
+### Layout Animations
+Create smooth layout transitions:
+
+```tsx
+<motion.div layout>
+  {items.map(item => (
+    <motion.div key={item.id} layout>
+      {item.content}
+    </motion.div>
+  ))}
+</motion.div>
+```
+
+### Scroll-Triggered Animations
+Create animations based on scroll position:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0 }}
+  whileInView={{ opacity: 1 }}
+  viewport={{ once: true }}
+/>
+```
+
+## 📝 Project Pages
+
+- **Home**: Interactive showcase with chaotic animations
+- **Basic Animations**: Fundamental animation concepts
+- **Variants**: Reusable animation states
+- **Gestures**: Interactive gesture animations
+- **Layout Animations**: Smooth layout transitions
+- **Scroll Animations**: Scroll-triggered effects
+
+## 🌐 Browser Support
+
+This project is built with modern JavaScript features and should work in all browsers that support ES6+.
+
+## 🔗 Resources
+
+- [Motion Documentation](https://www.framer.com/motion/)
+- [React Documentation](https://react.dev/)
+- [Framer Motion GitHub Repository](https://github.com/framer/motion)
